@@ -1,9 +1,12 @@
 import { connect } from "mongoose";
+import dotenv from "dotenv";
 
-const uri = "mongodb+srv://mike:9059@cluster0.mntgklv.mongodb.net/middleware-db"
+dotenv.config()
+
+const uri = process.env.MONGO_URL!
 
 export const connectToDb = async (): Promise<void> => {
     await connect(uri)
 
-    console.log(`connected to the db: ${uri}`)
+    console.log("connected to the db")
 }

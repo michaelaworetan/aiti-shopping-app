@@ -11,9 +11,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users", userRoutes);
 
-app.use(auth);
-
-app.use("/api/products", productRoutes);
+app.use("/api/products", auth, productRoutes);
 
 connectToDb();
 

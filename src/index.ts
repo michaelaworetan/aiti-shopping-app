@@ -3,12 +3,15 @@ import productRoutes from "./routes/productRoutes";
 import userRoutes from "./routes/userRoutes";
 import bodyParser from "body-parser";
 import { connectToDb } from "./database/db";
+import { auth } from "./middleware/auth";
 
 const app = express();
 
 app.use(bodyParser.json());
 
 app.use("/api/users", userRoutes);
+
+app.use(auth);
 
 app.use("/api/products", productRoutes);
 

@@ -17,22 +17,14 @@ export const generateToken = (payload: any) => {
 };
 
 
-export const auth = (req: Request, res: Response, next: NextFunction): void => {
-    try {
-        const token = req.header("Authorization")?.replace("Bearer ", "");
+export const auth = (req: Request, res: Response, next: NextFunction) => {
+        const token = req.header("Authorization")?.replace("Bearer", "");
+        
         if (!token) {
             res.status(401).json({ message: "Authorization token is missing" });
             return; // Stop further execution
         }
 
-        jwt.verify(token, tokenSecret, (err) => {
-            if (err) {
-                res.status(401).json({ message: "Unauthorized: Invalid or expired token" });
-                return; // Stop further execution
-            }
+        jwt.verify(token, tokenSecret)
             next(); // Proceed if the token is valid
-        });
-    } catch (error) {
-        res.status(401).json({ message: "Unauthorized: Invalid or expired token" });
-    }
 };

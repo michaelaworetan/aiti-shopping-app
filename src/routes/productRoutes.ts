@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { createProduct, getProducts } from "../controllers/Product";
-import { auth } from "../middleware/auth";
 
 const router = Router();
 
@@ -8,6 +7,6 @@ const router = Router();
 router.get("/", getProducts)
 
 // createProducts Routes
-router.post("/", auth, createProduct)
+router.post("/", createProduct)
 
 export default router;

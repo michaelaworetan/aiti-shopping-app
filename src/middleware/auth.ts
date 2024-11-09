@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { NextFunction, Request, Response } from "express"
 
-const tokenSecret = "letmein"
+const tokenSecret = process.env.TOKEN_SECRET!
 const tokenExpiration = "1 day"
 
 // Generate a token after user has signed in 

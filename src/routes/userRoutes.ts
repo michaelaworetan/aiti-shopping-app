@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addProductToCart, createUser, getUsers, signIn } from "../controllers/User";
+import { addProductToCart, createUser, deleteUser, getUsers, signIn, UpdateUser } from "../controllers/User";
 
 const router = Router();
 
@@ -8,6 +8,12 @@ router.get("/", getUsers)
 
 // Create Users Routes
 router.post("/", createUser)
+
+// Update Users Routes
+router.post("/updateUser", UpdateUser)
+
+// Delete Users Routes
+router.delete("/deleteUser", deleteUser)
 
 // Sign-in users ROutes
 router.post("/signin", signIn)

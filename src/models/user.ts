@@ -1,17 +1,32 @@
-import {Schema, model } from "mongoose"
+import { Schema, model } from "mongoose";
 
-interface User{
-    name: string
-    email: string
-    password: string
-    products: string[]
+// cartProduct interface
+interface CartProduct {
+  productId: Schema.Types.ObjectId;
+  quantity: number;
 }
 
-const userSchema = new Schema<User>({
-    name: {type: String, required: true},
-    email: {type: String, required: true, unique: true},
-    password: {type: String, required: true},
-    products: {type: [String], required: true}
-})
+// User Interface including a cartProducts property which is based on the CartProduct interface
+interface User {
+  name: string;
+  email: string;
+  password: string;
+  cartProducts: CartProduct[];
+}
 
-export const User = model<User>("User", userSchema)
+// cartProduct Schema
+const cartProductSchema = new Schema<CartProduct>({
+  productId: { type: Schema.Types.ObjectId, ref: "product" },
+  quantity: { type: Number, required: true },
+});
+
+// userSChema including a cartProducts Property which is based on cartProductSchema
+const userSchema = new Schema<User>({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  cartProducts: { type: [cartProductSchema], default: [] },
+});
+
+// User model using on user interface based on userSchema
+export const User = model<User>("User", userSchema);

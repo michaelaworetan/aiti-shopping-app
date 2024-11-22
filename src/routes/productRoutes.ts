@@ -4,9 +4,9 @@ import { createProduct, getProducts } from "../controllers/Product";
 const router = Router();
 
 //  Get Produxt Routes
-router.get("/", getProducts)
+router.get("/", getProducts);
 
 // createProducts Routes
-router.post("/", createProduct)
+router.post("/", createProduct);
 
 export default router;

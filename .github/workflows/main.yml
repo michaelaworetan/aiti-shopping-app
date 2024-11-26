@@ -28,8 +28,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: Aiti-node 
-        environment_name: Aiti-node-env
+        application_name: Aiti-shopping-app 
+        environment_name: Aiti-shopping-app-env
         version_label: ${{ github.sha }}
         region: eu-north-1
         deployment_package: deploy.zip

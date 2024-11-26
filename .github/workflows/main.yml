@@ -12,14 +12,6 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20 
-
-    - name: Install Dependencies
-      run: npm install
-
     - name: Generate deployment package
       run: zip -r deploy.zip . 
 
@@ -33,3 +25,4 @@ jobs:
         version_label: ${{ github.sha }}
         region: eu-north-1
         deployment_package: deploy.zip
+        use_existing_version_if_available: true

@@ -1,0 +1,35 @@
+name: Deploy AITI-node-app
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20 
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . 
+
+    - name: Deploy to AWS ElasticBeanstalk
+      uses: einaregilsson/beanstalk-deploy@v22
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: Aiti-node 
+        environment_name: Aiti-node-env
+        version_label: ${{ github.sha }}
+        region: eu-north-1
+        deployment_package: deploy.zip

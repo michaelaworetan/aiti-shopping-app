@@ -107,7 +107,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 This project is licensed under the MIT License.
 
----
-
-Save this content in a file named `README.md` in the root directory of your project.
-

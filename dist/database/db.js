@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectToDb = void 0;
 const mongoose_1 = require("mongoose");
-const uri = "mongodb+srv://mike:9059@cluster0.mntgklv.mongodb.net/middleware-db";
+const uri = "";
 const connectToDb = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, mongoose_1.connect)(uri);
     console.log(`connected to the db: ${uri}`);

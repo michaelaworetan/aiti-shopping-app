@@ -7,8 +7,10 @@ const router = (0, express_1.Router)();
 router.get("/", User_1.getUsers);
 // Create Users Routes
 router.post("/", User_1.createUser);
+// Update Users Routes
+router.post("/updateUser", User_1.UpdateUser);
+// Delete Users Routes
+router.delete("/deleteUser", User_1.deleteUser);
 // Sign-in users ROutes
 router.post("/signin", User_1.signIn);
-// add products to cart Routes
-router.post("/addToCart/:id", User_1.addProductToCart);
 exports.default = router;

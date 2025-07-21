@@ -14,33 +14,32 @@ const product_1 = require("../models/product");
 // get product(s)
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield product_1.Product.find();
-    res.json(products);
+    return res.json(products);
 });
 exports.getProducts = getProducts;
 // create product
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, name, price } = req.body;
+    const { name, price } = req.body;
     try {
-        //Check if a product already exists with the provide
-        const existingProduct = yield product_1.Product.findOne({ id });
-        if (existingProduct) {
-            res.status(404).json({ message: "Product already exists" });
-            return;
-        }
+        //  //Check if a product already exists with the provide
+        //  const existingProduct = await Product.findOne({ id });
+        //  if(existingProduct) {
+        //     res.status(404).json({message: "Product already exists"})
+        //     return
+        //  }
         //create a new user instance from the provided data
         const newProduct = new product_1.Product({
-            id,
             name,
-            price
+            price,
         });
         //Save the new User to the database
         yield newProduct.save();
-        //  Respond 
-        res.status(201).json({ newProduct });
+        //  Respond
+        return res.status(201).json({ message: "new product", newProduct });
     }
     catch (error) {
         console.error(error); //log the error for degging
-        res.status(500).json({ message: 'Server error' });
+        return res.status(500).json({ message: "Server error" });
     }
 });
 exports.createProduct = createProduct;
